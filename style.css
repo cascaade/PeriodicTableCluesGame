@@ -1,0 +1,332 @@
+html,
+body {
+    background-color: darkseagreen;
+    color: darkslategray;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+#welcomeBox {
+    padding: 25px;
+}
+
+#welcomeBox h1 {
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+}
+
+#welcomeBox p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+hr {
+    width: 80%;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+h3 {
+    font-size: 30px;
+    margin: 8px;
+}
+
+#questionInput {
+    font-size: 24px;
+    color: darkslategray;
+    outline: none;
+    border: 4px solid darkslategray;
+    border-radius: 8px;
+    max-height: 50px;
+    min-width: 50vw;
+    background: none;
+    text-align: center;
+    padding: 2px 6px;
+    margin-right: 10px;
+}
+
+#enterBtn {
+    cursor: pointer;
+    font-size: 20px;
+    color: darkslategray;
+    padding: 2px 6px;
+    border: 4px solid darkslategray;
+    border-radius: 8px;
+    background: none;
+    text-align: center;
+    height: 40px;
+    width: 150px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: bold;
+}
+
+#questionInput:disabled,
+#enterBtn:disabled {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#inputContainer {
+    text-align: center;
+    display: flex;
+    margin: 15vh 50vw;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+#bannerMsg {
+    margin-bottom: 8vh;
+}
+
+#hintsContainer {
+    text-align: center;
+}
+
+#reload {
+    align-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    color: darkslategray;
+    padding: 2px 6px;
+    border: 4px solid darkslategray;
+    border-radius: 8px;
+    background: none;
+    text-align: center;
+    height: 40px;
+    width: 120px;
+    margin: auto;
+}
+
+#hintsList {
+    margin: auto 10%;
+    text-align: left;
+    display: block;
+}
+
+#hintsContainer {
+    background-color: rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 50vw;
+    margin: auto;
+    padding: 15px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+    font-size: 18px;
+}
+
+#footer {
+    /* width: 100%; */
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    padding-top: 30px;
+    padding-bottom: 5px;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+
+#issue a {
+    color: #353535;
+}
+
+/* TOGGLE SWITCH */
+
+/* .toggleSwitch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.toggleSwitch .toggleSwitchBody {
+    background-color: #ddd;
+    border: 1px solid gray;
+    width: 96px;
+    border-radius: 48px;
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.toggleSwitch .toggleSwitchBody .toggle {
+    width: 48px;
+    height: 48px;
+    background-color: white;
+    border-radius: 50%;
+    border: 1px solid gray;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+    transition: all 0.35s ease;
+}
+
+.toggleSwitch:active .toggleSwitchBody {
+    background-color: #51d88a;
+}
+
+.toggleSwitch:active .toggleSwitchBody .toggle {
+    transform: translateX(100%);
+}
+
+.toggleSwitch input[type=checkbox] {
+    display: none;
+} */
+
+/* PERIODIC TABLE */
+@media (max-width : 1080px) {
+    #periodicTable {
+        display: none;
+    }
+}
+
+#periodicTable {
+    text-align: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 15px 0;
+    margin: 30px 0;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* #periodicTableKey tr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+#periodicTableKey tr th {
+/*   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px; */
+  width: 75px;
+  height: 75px;
+  border-radius: 5px;
+  font-family: 'Oswald', sans-serif;
+  padding: 0 5px;
+  font-size: 12px;
+}
+
+.keyBoxNone {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#periodicTableTable {
+    min-width: 80vw;
+    max-width: 90vw;
+    margin: auto;
+    padding-bottom: 25px;
+}
+
+#periodicTableTable tr {
+    min-width: 75px;
+    max-width: 100%;
+}
+
+#periodicTableTable tr th {
+    height: 75px;
+    width: 75px;
+    padding: 2px;
+    border-radius: 5px;
+    color: #353535;
+    font-family: 'Oswald', sans-serif;
+}
+
+/* ELEMENT STYLES */
+
+.elementSymbol {
+    font-size: 20px;
+    margin: auto;
+}
+
+.elementName {
+    font-size: 12px;
+    margin: auto;
+}
+
+.elementAtomicNumber {
+    font-size: 12px;
+    text-align: left;
+    margin: 0;
+    width: 0;
+}
+
+.elementTopBar {
+    /* text-align: left; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: auto;
+    width: 80%;
+}
+
+.elementAtomicMass {
+    font-size: 10px;
+    margin: auto;
+}
+
+.elementMarker {
+    padding-left: 3px;
+    float: right;
+}
+
+.gasMarker {
+    fill: tomato;
+}
+
+.liquidMarker {
+    fill: royalblue;
+}
+
+.solidMarker {
+    fill: #353535;
+}
+
+.syntheticMarker {
+    fill: brown;
+}
+
+.radioactiveMarker {
+    fill: teal;
+}
+
+/* ELEMENT CLASS COLORS */
+
+.noble-gas {
+    background-color: #93d4e6;
+}
+
+.halogen {
+    background-color: #93e6cd;
+}
+
+.nonmetal {
+    background-color: #b6ed7b;
+}
+
+.metalloid {
+    background-color: #faf884;
+}
+
+.transition-metal {
+    background-color: #edc07b;
+}
+
+.inner-transition-metal {
+    background-color: #edcb7b;
+}
+
+.alkali {
+    background-color: #ed857b;
+}
+
+.alkaline {
+    background-color: #ed927b;
+}
+
+.lanthanide {
+    background-color: #acccfc;
+}
+
+.actinide {
+    background-color: #b58feb;
+}
