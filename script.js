@@ -119,6 +119,13 @@ const elements = [
     { name: "oganesson", symbol: "og", atomicNumber: 118, state: "gas", metal: "nonmetal", classList: ["noble gas", "synthetic", "radioactive"], atomicMass: "[294]", tablePos: { x: 17, y: 6 } },
 ]
 
+const inputBox = document.getElementById("input");
+const enterButton = document.getElementById("input-confirm-button");
+const outputMessage = document.getElementById("output-message");
+const hintsList = document.getElementById('hints-list');
+const hintsCount = document.getElementById('hints-count');
+const periodicTable = document.getElementById("table");
+
 const questionKeywords = []
 const guessedKeywords = []
 const typeGroupings = {
@@ -158,15 +165,16 @@ function capName(str) {
 }
 
 function addHint(text) {
-    const li = document.createElement("li")
-    li.innerText = text
-    document.getElementById("hintsList").appendChild(li)
-    score += 1
-    document.getElementById("hintsCount").innerText = score
+    const li = document.createElement("li");
+    li.innerText = text;
+    hintsList.appendChild(li);
+
+    score += 1;
+    hintsCount.innerText = score;
 }
 
 function greyElement(element) {
-    document.getElementById(element).style.backgroundColor = "#808080"
+    document.getElementById(element).classList.add('eliminated');
 }
 
 function hintElements(cl) {
@@ -234,14 +242,14 @@ function run() {
     function clueReveal(keyword) {
         if (element.name == keyword) {
             if (score <= 1) {
-                document.getElementById("bannerMsg").innerText = "YOU CHEATER! YOU ABSOLUTE GOBLIN. YOU SHALL PAY! THIS WILL NOT BE MADE EASY FOR YOU! YOU BREAK MY RULES, I BREAK YOUR BOUNDARIES. STOP CHEATING YOU THIEF. THIS AUDIO SHOULD TEACH YOU!";
+                outputMessage.innerText = "YOU CHEATER! YOU ABSOLUTE GOBLIN. YOU SHALL PAY! THIS WILL NOT BE MADE EASY FOR YOU! YOU BREAK MY RULES, I BREAK YOUR BOUNDARIES. STOP CHEATING YOU THIEF. THIS AUDIO SHOULD TEACH YOU!";
                 var audio = new Audio('videoplayback.mp3');
                 audio.play();
             } else {
-                document.getElementById("bannerMsg").innerText = "Congratulations! You got the element in " + (score + 1) + " tries! It was " + capName(element.name) + "! Reload to play again!";
+                outputMessage.innerText = "Congratulations! You got the element in " + (score + 1) + " tries! It was " + capName(element.name) + "! Reload to play again!";
             }
-            document.getElementById("questionInput").disabled = true;
-            document.getElementById("enterBtn").disabled = true;
+            inputBox.disabled = true;
+            enterButton.disabled = true;
         } else if (typeGroupings.elements.includes(keyword)) {
             addHint("The secret element is not " + capName(keyword) + ".")
             greyElement(keyword)
@@ -281,7 +289,7 @@ function run() {
     }
 
     function inputEntered() {
-        let input = document.getElementById("questionInput").value
+        let input = inputBox.value
 
         let matches = []
         let matched = false
@@ -294,20 +302,20 @@ function run() {
                 matched = true
 
                 let msg = "Welcome Adventurer. We have awaited your presence. Please wait as we get your X-Files..."
-                document.getElementById("bannerMsg").innerText = msg + " (0)"
+                outputMessage.innerText = msg + " (0)"
 
                 window.setTimeout(function () {
-                    document.getElementById("bannerMsg").innerText = msg + " (1)"
+                    outputMessage.innerText = msg + " (1)"
                     window.setTimeout(function () {
-                        document.getElementById("bannerMsg").innerText = msg + " (2)"
+                        outputMessage.innerText = msg + " (2)"
                         window.setTimeout(function () {
-                            document.getElementById("bannerMsg").innerText = msg + " (3)"
+                            outputMessage.innerText = msg + " (3)"
                             window.setTimeout(function () {
-                                document.getElementById("bannerMsg").innerText = msg + " (4)"
+                                outputMessage.innerText = msg + " (4)"
                                 window.setTimeout(function () {
-                                    document.getElementById("bannerMsg").innerText = msg + " (5)"
+                                    outputMessage.innerText = msg + " (5)"
                                     window.setTimeout(function () {
-                                        document.getElementById("bannerMsg").innerText = "X-Files[Elementalite] { name: 'Elementalite', file: '{ name: '" + element.name + "', symbol: '" + element.symbol + "', atomicNumber: " + element.atomicNumber + ", state: '" + element.state + "', metal: '" + element.state + "', classList: " + element.state + ", atomicMass: " + element.atomicMass + " }' }"
+                                        outputMessage.innerText = "X-Files[Elementalite] { name: 'Elementalite', file: '{ name: '" + element.name + "', symbol: '" + element.symbol + "', atomicNumber: " + element.atomicNumber + ", state: '" + element.state + "', metal: '" + element.state + "', classList: " + element.state + ", atomicMass: " + element.atomicMass + " }' }"
                                     }, 500)
                                 }, 1000)
                             }, 1000)
@@ -318,7 +326,7 @@ function run() {
                 input = formatInput(input)
                 debugInit = false
 
-                document.getElementById("bannerMsg").innerText = ""
+                outputMessage.innerText = ""
 
                 input = input.replaceAll("lanthanoid", "lanthanide")
                 input = input.replaceAll("actinoid", "actinide")
@@ -399,12 +407,12 @@ function run() {
                 }
 
                 if (input.includes("big hint") == true) {
-                    document.getElementById("bannerMsg").innerText = "Rats. You've trapped us. We will give you a huge hint if you brighten our day with a fun fact. Whaddya say?"
+                    outputMessage.innerText = "Rats. You've trapped us. We will give you a huge hint if you brighten our day with a fun fact. Whaddya say?"
                     bigHintInit = true
                     matched = true
                 } else {
                     if (input.includes("did you know") == true && bigHintInit == true) {
-                        document.getElementById("bannerMsg").innerText = "Interesting! The hint is the element start with " + capName(element.name.charAt(0) + element.name.charAt(1))
+                        outputMessage.innerText = "Interesting! The hint is the element start with " + capName(element.name.charAt(0) + element.name.charAt(1))
                         matched = true
                     } else {
                         bigHintInit = false
@@ -412,34 +420,34 @@ function run() {
                 }
 
                 if (input.includes("owen") == true && input.includes("best") == true) {
-                    document.getElementById("bannerMsg").innerText = "Why thank you! *bows*"
+                    outputMessage.innerText = "Why thank you! *bows*"
                     matched = true
-                    window.setTimeout(function () { document.getElementById("bannerMsg").innerText = "" }, 3000)
+                    window.setTimeout(function () { outputMessage.innerText = "" }, 3000)
                 }
 
                 if (input.includes("sofia the first") == true || input.includes("ooga booga") == true || input.includes("roblox") == true) {
-                    document.getElementById("bannerMsg").innerText = "Hey! Thats my favorite!"
+                    outputMessage.innerText = "Hey! Thats my favorite!"
                     matched = true
                 }
 
                 if (input.includes("open the chamber of secrets") == true) {
-                    document.getElementById("bannerMsg").innerText = "If you say so... {HeFN-OFSiCa;PVBSi-CaOB-HeBKCa;PHeMgPCr;F-NFTiB-ScS}"
+                    outputMessage.innerText = "If you say so... {HeFN-OFSiCa;PVBSi-CaOB-HeBKCa;PHeMgPCr;F-NFTiB-ScS}"
                     matched = true
                 }
 
                 if (input.includes("i give up") == true) {
-                    document.getElementById("bannerMsg").innerText = "Aww! Don't give up! You can do it! By the way the element was " + capName(element.name) + ".";
-                    document.getElementById("questionInput").disabled = true;
-                    document.getElementById("enterBtn").disabled = true;
+                    outputMessage.innerText = "Aww! Don't give up! You can do it! By the way the element was " + capName(element.name) + ".";
+                    inputBox.disabled = true;
+                    enterButton.disabled = true;
                     matched = true
                 }
             }
         }
 
-        document.getElementById("questionInput").value = "";
+        inputBox.value = "";
 
         if (matched == false) {
-            document.getElementById("bannerMsg").innerText = "Invalid phrase."
+            outputMessage.innerText = "Invalid phrase."
         }
     }
 
@@ -449,7 +457,7 @@ function run() {
         }
     })
 
-    document.getElementById("enterBtn").addEventListener("click", inputEntered);
+    enterButton.addEventListener("click", inputEntered);
 }
 
 /* let table = [[]]
@@ -467,7 +475,7 @@ for (let i = 0; i < elements.length; i++) {
     let e = elements[i]
     /*     elements[i].atomicNumber = i + 1 */
 
-    let th = document.createElement("th")
+    let th = document.createElement("td")
     let symbol = document.createElement("p")
     let name = document.createElement("p")
     let atomicMass = document.createElement("p")
@@ -491,6 +499,7 @@ for (let i = 0; i < elements.length; i++) {
     }
 
     th.id = e.name
+    th.classList.add("element");
     th.classList.add("-" + hashName(e.state))
     th.classList.add("-" + hashName(e.metal))
 
@@ -545,11 +554,11 @@ for (let i = 0; i < elements.length; i++) {
     th.append(atomicMass)
 
     function createLine() {
-        if (document.getElementById("periodicTableTable").getElementsByTagName("tr").length < e.tablePos.y + 1) {
-            document.getElementById("periodicTableTable").append(document.createElement("tr"))
+        if (periodicTable.getElementsByTagName("tr").length < e.tablePos.y + 1) {
+            periodicTable.append(document.createElement("tr"))
             for (let j = 0; j < 18; j++) {
-                let elems = document.getElementById("periodicTableTable").getElementsByTagName("tr")
-                document.getElementById("periodicTableTable").getElementsByTagName("tr")[elems.length - 1].append(document.createElement("th"))
+                let elems = periodicTable.getElementsByTagName("tr")
+                periodicTable.getElementsByTagName("tr")[elems.length - 1].append(document.createElement("td"))
             }
             createLine()
         }
@@ -557,7 +566,7 @@ for (let i = 0; i < elements.length; i++) {
 
     createLine()
 
-    document.getElementById("periodicTableTable").getElementsByTagName("tr")[e.tablePos.y].getElementsByTagName("th")[e.tablePos.x].replaceWith(th)
+    periodicTable.getElementsByTagName("tr")[e.tablePos.y].getElementsByTagName("td")[e.tablePos.x].replaceWith(th)
 }
 
 run()
