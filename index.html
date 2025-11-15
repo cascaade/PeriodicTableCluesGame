@@ -4,13 +4,15 @@
 
 <head>
     <link rel="stylesheet" href="style.css" />
-    <title>Element Guesser</title>
+    <title>The Periodic Table Clues Game</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
 </head>
 
 <body>
     <div id="page-banner" class="content-container">
-        <h1>Welcome to Element Guesser!</h1>
-        <p>Enter a yes or no question about the secret element (Ex. "is it a solid") into the input box below!</p>
+        <h1>Welcome to the Periodic Table Clues Game!</h1>
+        <p>Enter a yes or no question about the secret element into the input box below!</p>
+        <p>Assume standard lab conditions. (25&deg;C, 1atm)</p>
     </div>
 
     <div id="io-container" class="content-container">
@@ -20,6 +22,17 @@
         </div>
 
         <p id="output-message"></p>
+
+        <details>
+            <summary>Need Inspiration?</summary>
+            <ol>
+                <li>Name a state of matter (solid, liquid, gas, or unknown)</li>
+                <li>Name a block (s, d, p, or f)</li>
+                <li>Name a series (alkaline, reactive nonmetals, etc.)</li>
+                <li>Name a group (halogen, noble gas, carbon group, etc.)</li>
+                <li>Name an element name or symbol (Palladium or Pd, etc.)</li>
+            </ol>
+        </details>
     </div>
     
     <div id="hints-container" class="content-container">
@@ -33,9 +46,11 @@
         <h3>Periodic Table Visual</h3>
         <p>(for help if needed)</p>
         
-        <table id="table">
-            
-        </table>
+        <div id="table">
+            <div id="table-key-container">
+                
+            </div>
+        </div>
 <!-- 
         <h3>Key</h3> -->
         <!-- <table id="periodicTableKey">
@@ -124,10 +139,10 @@
     <div id="footer">
         <button id="reload" onclick="window.location.reload()">Start Over</button>
         <br>
-        <h4>Version 2.99.99</h4>
+        <h4>Version 3.0</h4>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" type="module"></script>
 
 </body>
 

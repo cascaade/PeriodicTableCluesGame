@@ -82,6 +82,10 @@ h3 {
     color: var(--subtle-text-color);
 }
 
+ol {
+    margin-top: 0.2em;
+}
+
 /* HINTS */
 
 #hints-container {
@@ -170,11 +174,11 @@ h3 {
 
 /* PERIODIC TABLE */
 
-@media (max-width : 1080px) {
+/* @media (max-width : 1080px) {
     #table-container {
         display: none;
     }
-}
+} */
 
 #table-container {
     text-align: center;
@@ -195,100 +199,95 @@ h3 {
   align-items: center;
 } */
 
-#periodicTableKey tr th {
-/*   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5px; */
-  width: 75px;
-  height: 75px;
-  border-radius: 5px;
-  padding: 0 5px;
-}
-
 .keyBoxNone {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
 #table {
-    min-width: 80vw;
-    max-width: 90vw;
+    width: 90%;
+    /* max-width: 90vw; */
     margin: auto;
     padding-bottom: 25px;
+    display: grid;
+    grid-template-columns: repeat(18, 1fr);
+    grid-template-rows: repeat(6, 1fr) 1.3fr 1fr 1fr;
+    gap: 2px;
+}
+
+#table-key-container {
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 4;
+    grid-column-end: 12;
 }
 
 /* ELEMENT STYLES */
 
 .element {
     aspect-ratio: 1;
-    width: 75px;
     padding: 0.5em;
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-.elementSymbol {
+.element-topbar {
+    display: flex;
+    justify-content: space-between;
+}
+
+.element-symbol {
+    --color: inherit;
     font-size: 1.8em;
     font-weight: 600;
-    margin: auto;
+    display: block;
+    color: var(--color);
 }
 
-.elementName {
+.element-name {
     font-size: 0.8em;
-    margin: auto;
+    display: block;
 }
 
-.elementAtomicNumber {
+.element-atomic-mass {
+    font-size: 0.8em;
+    display: block;
+}
+
+.element-atomic-number {
     font-size: 0.8em;
     text-align: left;
     margin: 0;
-    width: 0;
+    width: 100%;
+    display: block;
 }
 
-.elementTopBar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: auto;
+.solid .element-symbol {
+    --color: inherit;
 }
 
-.elementAtomicMass {
-    font-size: 0.8em;
-    margin: auto;
+.liquid .element-symbol {
+    --color: hsl(240, 100%, 50%);
 }
 
-.elementMarker {
-    padding-left: 3px;
-    float: right;
+.gas .element-symbol {
+    --color: hsl(0, 100%, 50%);
 }
 
-.gasMarker {
-    fill: tomato;
+.unknown-state .element-symbol {
+    --color: hsl(0, 0%, 50%);
 }
 
-.liquidMarker {
-    fill: royalblue;
-}
-
-.solidMarker {
-    fill: #353535;
-}
-
-.syntheticMarker {
-    fill: brown;
-}
-
-.radioactiveMarker {
-    fill: teal;
+.radioactive .element-marker-1 {
+    
 }
 
 /* ELEMENT CLASS COLORS */
 
-.actinide {
+.actinoid {
     background-color: hsl(300, 30%, 25%);
 }
 
-.lanthanide {
+.lanthanoid {
     background-color: hsl(270, 30%, 25%);
 }
 
@@ -296,7 +295,7 @@ h3 {
     background-color: hsl(220, 30%, 25%);
 }
 
-.halogen {
+.reactive-nonmetal {
     background-color: hsl(200, 30%, 25%);
 }
 
@@ -305,21 +304,21 @@ h3 {
 }
 
 .metalloid {
-    background-color: hsl(90, 30%, 25%);
+    background-color: hsl(122, 30%, 25%);
 }
 
-.inner-transition-metal {
-    background-color: hsl(80, 30%, 25%);
+.post-transition-metal {
+    background-color: hsl(71, 30%, 25%);
 }
 
 .transition-metal {
-    background-color: hsl(35, 30%, 25%);
+    background-color: hsl(39, 30%, 25%);
 }
 
-.alkaline {
-    background-color: hsl(25, 30%, 25%);
+.alkaline-earth-metal {
+    background-color: hsl(17, 30%, 25%);
 }
 
-.alkali {
+.alkali-metal {
     background-color: hsl(0, 30%, 25%);
 }
